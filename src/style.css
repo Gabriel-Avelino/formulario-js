@@ -75,6 +75,9 @@ body {
 
 .form-control.error input {
     border: 3px solid #b22c2c;
+}
+
+.shake {
     animation: shake 0.2s 2;
 }
 

@@ -3,6 +3,7 @@ const userName = document.getElementById('name');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const passwordCheck = document.getElementById('passwordCheck');
+let formControl;
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -18,28 +19,35 @@ function checkInputs() {
 
     if (nameValue === '') {
         errorValidation(userName, 'Preencha esse campo');
+        
+        shake();
     } else {
         successValidation(userName);
     };
 
     if (emailValue === '') {
         errorValidation(email, 'Preencha esse campo');
+        shake();
     } else {
         successValidation(email);
     };
 
     if (passwordValue === '') {
         errorValidation(password, 'Preencha esse campo');
+        shake();
     } else if (password.length < 8) {
         errorValidation(password, 'A senha deve ter 8 ou mais caracteres');
+        shake();
     }else {
         successValidation(password);
     }
 
     if (passwordCheckValue === '') {
         errorValidation(passwordCheck, 'Preencha esse campo');
+        shake();
     } else if (passwordCheck !== password) {
         errorValidation(passwordCheck, 'As senhas são diferentes');
+        shake();
     }
     else {
         successValidation(passwordCheck);
@@ -48,14 +56,28 @@ function checkInputs() {
 
 
 function errorValidation(input, message) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control error';
+    formControl = input.parentElement;
+    formControl.classList.add('error');
+    formControl.classList.remove('success');
 
     const messageError = formControl.querySelector('small');
     messageError.innerHTML = message;
 }
 
 function successValidation(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control success';
+    formControl = input.parentElement;
+    formControl.classList.add('success');
+    formControl.classList.remove('error');
+
+}
+
+function shake (){
+    if (formControl.classList.contains('shake')) {
+        formControl.classList.remove('shake');
+        formControl.classList.add('shake');
+        
+    } else {
+        formControl.classList.remove('shake');
+        formControl.classList.add('shake');
+    }
 }
