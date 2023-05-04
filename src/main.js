@@ -19,7 +19,6 @@ function checkInputs() {
 
     if (nameValue === '') {
         errorValidation(userName, 'Preencha esse campo');
-        
         shake();
     } else {
         successValidation(userName);
