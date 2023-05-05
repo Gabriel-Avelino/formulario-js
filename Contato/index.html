@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+</head>
+<body>
+    <h1>Fale Conosco</h1>
+    <form action="https://api.staticforms.xyz/submit" method="POST" class="form">
+        <input type="hidden" name="accessKey" value="13665a1e-6fff-4aae-a795-2299b228bbf3">
+        <input type="hidden" name="redirectTo" value="http://127.0.0.1:5500/formularios-js/Contato/thanks.html">
+        <div class="form-control">
+            <label for="nome">Nome</label>
+            <input type="text" name="name" id="nome" required>
+        </div>
+        <div class="form-control">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div class="form-control">
+            <label for="subject">Assunto</label>
+            <input type="text" name="subject" id="subject" required>
+        </div>
+        <div class="form-control">
+            <label for="message">Mensagem</label>
+            <textarea name="message" id="message" cols="30" rows="10" required>Digite sua mensagem</textarea>
+        </div>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
