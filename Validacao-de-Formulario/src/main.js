@@ -3,7 +3,7 @@ const userName = document.getElementById('name');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const passwordCheck = document.getElementById('passwordCheck');
-let formControl;
+let formControls = [userName, email, password, passwordCheck];
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -19,64 +19,57 @@ function checkInputs() {
 
     if (nameValue === '') {
         errorValidation(userName, 'Preencha esse campo');
-        shake();
+        
     } else {
         successValidation(userName);
     };
 
     if (emailValue === '') {
         errorValidation(email, 'Preencha esse campo');
-        shake();
+        
     } else {
         successValidation(email);
     };
 
     if (passwordValue === '') {
         errorValidation(password, 'Preencha esse campo');
-        shake();
-    } else if (password.length < 8) {
-        errorValidation(password, 'A senha deve ter 8 ou mais caracteres');
-        shake();
+    } else if (passwordValue.length < 8) {
+        errorValidation(password, 'A senha deve ter 8 ou mais caracteres');  
     }else {
         successValidation(password);
-    }
+    };
 
     if (passwordCheckValue === '') {
         errorValidation(passwordCheck, 'Preencha esse campo');
-        shake();
-    } else if (passwordCheck !== password) {
+        
+    } else if (passwordCheckValue !== passwordValue) {
         errorValidation(passwordCheck, 'As senhas são diferentes');
-        shake();
-    }
-    else {
+    } else {
         successValidation(passwordCheck);
-    }
-}
+    };
+};
 
 
 function errorValidation(input, message) {
-    formControl = input.parentElement;
+    const formControl = input.parentElement;
     formControl.classList.add('error');
     formControl.classList.remove('success');
 
+    shake(formControl);
+
     const messageError = formControl.querySelector('small');
     messageError.innerHTML = message;
-}
+};
 
 function successValidation(input) {
-    formControl = input.parentElement;
+    const formControl = input.parentElement;
     formControl.classList.add('success');
     formControl.classList.remove('error');
+};
 
-}
-
-function shake (){
-    if (formControl.classList.contains('shake')) {
+function shake (formControl){
+    formControl.classList.add('shake');
+    formControl.addEventListener('animationend', ()=>{
         formControl.classList.remove('shake');
-        formControl.classList.add('shake');
-        
-    } else {
-        formControl.classList.remove('shake');
-        formControl.classList.add('shake');
-    }
-}
+    });
+};
